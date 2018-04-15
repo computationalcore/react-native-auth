@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import firebase from 'firebase';
+
+import { Header } from './components/common';
+import FIREBASE_SETUP from '../config/firebase';
 
 class App extends Component {
+
+  componentWillMount() {
+    firebase.initializeApp(FIREBASE_SETUP);
+  }
+
   render() {
     return (
       <View>
-        <Text style={styles.welcome}>An App!</Text>
+        <Header title="Authentication" />
       </View>
     );
   }
