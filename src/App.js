@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import firebase from 'firebase';
 
 import { Header } from './components/common';
+import LoginForm from './components/LoginForm';
 import FIREBASE_SETUP from '../config/firebase';
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
     return (
       <View>
         <Header title="Authentication" />
+        <LoginForm />
       </View>
     );
   }
