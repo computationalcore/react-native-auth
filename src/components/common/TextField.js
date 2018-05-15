@@ -21,7 +21,7 @@ const TextField = (props) => {
         autoCorrect={false}
         style={inputStyle}
         value={props.value}
-        onhangeText={props.onChangeText}
+        onChangeText={props.onChangeText}
       />
     </View>
   );
