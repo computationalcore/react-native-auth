@@ -7,7 +7,6 @@ const Spinner = (props) => (
   </View>
 );
 
-
 const styles = {
   spinnerStyle: {
     flex: 1,
