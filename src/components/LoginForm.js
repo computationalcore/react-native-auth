@@ -1,14 +1,54 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import firebase from 'firebase';
+
+// Custom components
 import { Button, Card, CardSection, TextField, Spinner } from './common';
 
-
+/**
+ * @description	The Login form component.
+ * @constructor
+ * @param {Object} props - The props that were defined by the caller of this component.
+ */
 class LoginForm extends Component {
-  state = { email: '', password: '', error: '', loading: false };
+  constructor(props) {
+    super(props);
 
+    /**
+     * @typedef {Object} ComponentState
+     * @property {string} email - The user email.
+     * @property {string} password - The user password.
+     * @property {string} error - Login error message.
+     * @property {boolean} loading - Indicates whether loading is visible
+     *    (Loader should be visible when the app is sending data to the server).
+     */
+
+    /** @type {ComponentState} */
+    this.state = {
+      email: '',
+      password: '',
+      error: '',
+      loading: false
+    };
+  }
+
+  /**
+   * @description Callback executed when login button is pressed.
+   */
   onButtonPress() {
     const { email, password } = this.state;
+
+    // Validate inputs
+    if (!email) {
+      this.setState({ error: 'Email field is required.' });
+      return;
+    } else if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) {
+      this.setState({ error: 'Invalid email.' });
+      return;
+    } else if (!password) {
+      this.setState({ error: 'Password field is required.' });
+      return;
+    }
 
     this.setState({ error: '', loading: true });
 
@@ -21,6 +61,9 @@ class LoginForm extends Component {
       });
   }
 
+  /**
+	 * @description Callback executed when the user login is successful.
+	 */
   onLoginSuccess() {
     this.setState({
       email: '',
@@ -30,10 +73,23 @@ class LoginForm extends Component {
     });
   }
 
-  onLoginFail() {
-    this.setState({ error: 'Authentication Failed.' });
+  /**
+   * @description Callback executed when the user login fails.
+   * @param {string} error - Login error message.
+   */
+  onLoginFail(error) {
+    console.log(error);
+    let errorMessage = '\nAuthentication Failed.\n';
+    errorMessage += (error.message) ? error.message : '';
+    this.setState({
+      error: errorMessage,
+      loading: false
+    });
   }
 
+  /**
+   * @description Render the Login button based on the loading state.
+   */
   renderButton() {
     if (this.state.loading) {
       return <Spinner size="small" />;
@@ -88,7 +144,8 @@ const styles = StyleSheet.create({
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
-    color: 'red'
+    color: 'red',
+    textAlign: 'center'
   }
 });
 
