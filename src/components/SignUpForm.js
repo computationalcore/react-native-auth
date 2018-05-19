@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import firebase from 'firebase';
 
 // Custom components
@@ -104,7 +104,7 @@ class SignUpForm extends Component {
   }
 
   render() {
-    const { errorTextStyle } = styles;
+    const { errorTextStyle, linkStyle } = styles;
     return (
       <Card>
         <CardSection>
@@ -143,6 +143,16 @@ class SignUpForm extends Component {
         <CardSection>
           {this.renderButton()}
         </CardSection>
+
+        <CardSection>
+          <Text>Already have an account? </Text>
+          <TouchableOpacity onPress={this.props.onLoginPressed}>
+            <Text style={linkStyle}>
+              Login
+            </Text>
+          </TouchableOpacity>
+        </CardSection>
+
       </Card>
     );
   }
@@ -157,6 +167,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: 'red',
     textAlign: 'center'
+  },
+  linkStyle: {
+    alignSelf: 'center',
+    color: '#007aff',
+    fontWeight: 'bold'
   }
 });
 
