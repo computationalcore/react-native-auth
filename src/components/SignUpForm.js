@@ -148,7 +148,7 @@ class SignUpForm extends Component {
           <Text>Already have an account? </Text>
           <TouchableOpacity onPress={this.props.onLoginPressed}>
             <Text style={linkStyle}>
-              Login
+              Sign In
             </Text>
           </TouchableOpacity>
         </CardSection>
