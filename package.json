@@ -1,7 +1,23 @@
 {
-  "name": "auth",
+  "name": "react-native-auth",
   "version": "0.0.1",
-  "private": true,
+  "description": "A react-native authentication app using firebase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/computationalcore/react-native-auth"
+  },
+  "keywords": [
+    "react-native",
+    "authentication",
+    "firebase",
+    "udemy",
+    "react"
+  ],
+  "author": "Vin Busquet",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "bugs": {
+    "url": "https://github.com/computationalcore/react-native-auth/issues"
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
